@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 248 248 245; /* Ivory */
+    --foreground: 51 51 51; /* Graphite */
+
+    --card: 248 248 245;
+    --card-foreground: 51 51 51;
+
+    --popover: 248 248 245;
+    --popover-foreground: 51 51 51;
+
+    --primary: 42 157 143; /* Persian Green */
+    --primary-foreground: 248 248 245;
+
+    --secondary: 30 95 139; /* Zanzibar Twilight */
+    --secondary-foreground: 248 248 245;
+
+    --muted: 157 122 109; /* Copper Patina */
+    --muted-foreground: 248 248 245;
+
+    --accent: 157 122 109; /* Copper Patina */
+    --accent-foreground: 248 248 245;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 248 245;
+
+    --border: 157 122 109;
+    --input: 157 122 109;
+    --ring: 42 157 143;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 51 51 51; /* Graphite */
+    --foreground: 248 248 245;
+
+    --card: 51 51 51;
+    --card-foreground: 248 248 245;
+
+    --popover: 51 51 51;
+    --popover-foreground: 248 248 245;
+
+    --primary: 42 157 143; /* Persian Green */
+    --primary-foreground: 51 51 51;
+
+    --secondary: 30 95 139;
+    --secondary-foreground: 248 248 245;
+
+    --muted: 157 122 109;
+    --muted-foreground: 248 248 245;
+
+    --accent: 157 122 109;
+    --accent-foreground: 248 248 245;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 248 245;
+
+    --border: 157 122 109;
+    --input: 157 122 109;
+    --ring: 42 157 143;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* CraftArtMarketplace Button Styles */
+  .btn-persian {
+    @apply bg-craftart-500 hover:bg-craftart-600 text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1;
+  }
+
+  .btn-persian-outline {
+    @apply border-2 border-craftart-500 text-craftart-500 hover:bg-craftart-500 hover:text-white font-medium px-6 py-3 rounded-lg transition-all duration-300;
+  }
+
+  /* Cultural Pattern Overlays */
+  .kitenge-overlay {
+    position: relative;
+  }
+
+  .kitenge-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/patterns/kitenge.svg');
+    background-repeat: repeat;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .paper-grain {
+    background-image: url('/textures/paper-grain.svg');
+    background-repeat: repeat;
+  }
+
+  /* Ceramic Button Effect */
+  .ceramic-button {
+    @apply relative overflow-hidden;
+    background: linear-gradient(145deg, #2A9D8F, #0f766e);
+    box-shadow: 
+      0 4px 15px rgba(42, 157, 143, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .ceramic-button:hover {
+    box-shadow: 
+      0 6px 20px rgba(42, 157, 143, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  /* Maasai Bead Loader */
+  .bead-loader {
+    @apply w-8 h-8 rounded-full bg-craftart-500 animate-bead-spin;
+    box-shadow: 
+      0 0 0 4px rgba(42, 157, 143, 0.2),
+      0 0 0 8px rgba(42, 157, 143, 0.1);
+  }
+
+  /* Parallax Container */
+  .parallax-container {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .parallax-element {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Scroll Snap */
+  .scroll-snap-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+  }
+
+  .scroll-snap-item {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  /* Persian Green Gradients */
+  .gradient-persian-1 {
+    background: linear-gradient(135deg, #2A9D8F 0%, #0f766e 100%);
+  }
+
+  .gradient-persian-2 {
+    background: linear-gradient(45deg, #2A9D8F 0%, #2dd4bf 50%, #0f766e 100%);
+  }
+
+  .gradient-persian-3 {
+    background: radial-gradient(circle at center, #2A9D8F 0%, #0f766e 70%);
+  }
+
+  .gradient-persian-4 {
+    background: linear-gradient(90deg, #2A9D8F 0%, #1E5F8B 100%);
+  }
+
+  .gradient-persian-5 {
+    background: conic-gradient(from 0deg, #2A9D8F, #2dd4bf, #0f766e, #2A9D8F);
+  }
+
+  .gradient-persian-6 {
+    background: linear-gradient(135deg, #2A9D8F 0%, #9D7A6D 50%, #1E5F8B 100%);
+  }
+
+  .gradient-persian-7 {
+    background: linear-gradient(180deg, #f0fdf9 0%, #2A9D8F 100%);
+  }
+
+  .gradient-persian-8 {
+    background: linear-gradient(270deg, #2A9D8F 0%, rgba(42, 157, 143, 0.1) 100%);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8F8F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A9D8F;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0f766e;
+}
+
+/* Dark theme scrollbar for admin panel */
+.dark ::-webkit-scrollbar,
+.bg-gray-900 ::-webkit-scrollbar,
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dark ::-webkit-scrollbar-track,
+.bg-gray-900 ::-webkit-scrollbar-track,
+.scrollbar-track-gray-800::-webkit-scrollbar-track {
+  background: #1f2937;
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb,
+.bg-gray-900 ::-webkit-scrollbar-thumb,
+.scrollbar-thumb-gray-600::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 3px;
+  border: 1px solid #374151;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover,
+.bg-gray-900 ::-webkit-scrollbar-thumb:hover,
+.scrollbar-thumb-gray-600::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Selection */
+::selection {
+  background: rgba(42, 157, 143, 0.3);
+  color: #333333;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid #2A9D8F;
+  outline-offset: 2px;
+}

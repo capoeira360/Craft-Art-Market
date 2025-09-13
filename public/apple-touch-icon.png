@@ -1,0 +1,6 @@
+<svg width="180" height="180" xmlns="http://www.w3.org/2000/svg">
+  <rect width="180" height="180" rx="20" fill="#2A9D8F"/>
+  <circle cx="90" cy="70" r="25" fill="#E9C46A"/>
+  <rect x="65" y="110" width="50" height="40" rx="5" fill="#F4A261"/>
+  <text x="90" y="170" text-anchor="middle" fill="white" font-family="Arial" font-size="14" font-weight="bold">Craft&Art</text>
+</svg>
