@@ -87,6 +87,29 @@
   }
 }
 
+/* Performance optimizations for smooth animations */
+@layer base {
+  .hero-fragment {
+    will-change: transform, opacity;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  #smooth-wrapper {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+  
+  #smooth-content {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+}
+
 /* Comprehensive Bandar Typography System */
 @layer base {
   /* Base typography - Apply Bandar to all text elements */

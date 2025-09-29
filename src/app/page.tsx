@@ -27,22 +27,28 @@ export default function HomePage() {
     if (typeof window === 'undefined') return
 
     const ctx = gsap.context(() => {
-      // Initialize ScrollSmoother
+      // Initialize ScrollSmoother with optimized settings
       ScrollSmoother.create({
         wrapper: smoothWrapperRef.current,
         content: "#smooth-content",
-        smooth: 1,
+        smooth: 2, // Increased for smoother scrolling
         effects: true,
-        smoothTouch: 0.1
+        smoothTouch: 0.3, // Improved touch responsiveness
+        normalizeScroll: true, // Better cross-browser consistency
+        ignoreMobileResize: true, // Prevent layout shifts on mobile
+        speed: 1.2 // Slightly faster scroll speed
       })
 
-      // Set initial state for image fragments
+      // Set initial state for image fragments with hardware acceleration
       gsap.set('.hero-fragment', { 
         scale: 1,
         opacity: 1,
         rotation: 0,
         x: 0,
-        y: 0
+        y: 0,
+        force3D: true, // Enable hardware acceleration
+        transformOrigin: "center center",
+        willChange: "transform, opacity" // Optimize for animations
       })
 
       // Hero text animations
@@ -61,69 +67,63 @@ export default function HomePage() {
         { opacity: 1, scale: 1, duration: 1, delay: 0.8, ease: 'back.out(1.7)' }
       )
 
-      // Image fragment split animation on scroll
+      // Image fragment split animation on scroll - optimized for smoothness
       ScrollTrigger.create({
         trigger: heroRef.current,
         start: "top top",
         end: "bottom top",
-        scrub: 1,
+        scrub: 2, // Increased scrub value for smoother animation
+        invalidateOnRefresh: true, // Better performance on resize
         onUpdate: (self) => {
           const progress = self.progress
 
-          // Top row fragments - split upward and outward
-          gsap.to('.hero-fragment-top-left', {
-            x: -200 * progress,
-            y: -150 * progress,
+          // Use a single timeline for better performance
+          const tl = gsap.timeline()
+
+          // Vertical strip fragments - slide horizontally outward with rotation
+          tl.to('.hero-fragment-col-1', {
+            x: -300 * progress,
+            y: -100 * progress,
             rotation: -15 * progress,
             opacity: 1 - progress * 0.8,
-            duration: 0.1
-          })
+            duration: 0,
+            ease: "none"
+          }, 0)
 
-          gsap.to('.hero-fragment-top-center', {
-            y: -200 * progress,
-            rotation: 5 * progress,
+          tl.to('.hero-fragment-col-2', {
+            x: -150 * progress,
+            y: 80 * progress,
+            rotation: -8 * progress,
             opacity: 1 - progress * 0.8,
-            duration: 0.1
-          })
+            duration: 0,
+            ease: "none"
+          }, 0)
 
-          gsap.to('.hero-fragment-top-right', {
-            x: 200 * progress,
-            y: -150 * progress,
+          tl.to('.hero-fragment-col-3', {
+            x: 150 * progress,
+            y: -80 * progress,
+            rotation: 8 * progress,
+            opacity: 1 - progress * 0.8,
+            duration: 0,
+            ease: "none"
+          }, 0)
+
+          tl.to('.hero-fragment-col-4', {
+            x: 300 * progress,
+            y: 100 * progress,
             rotation: 15 * progress,
             opacity: 1 - progress * 0.8,
-            duration: 0.1
-          })
-
-          // Bottom row fragments - split downward and outward
-          gsap.to('.hero-fragment-bottom-left', {
-            x: -250 * progress,
-            y: 200 * progress,
-            rotation: -20 * progress,
-            opacity: 1 - progress * 0.8,
-            duration: 0.1
-          })
-
-          gsap.to('.hero-fragment-bottom-center', {
-            y: 250 * progress,
-            rotation: -10 * progress,
-            opacity: 1 - progress * 0.8,
-            duration: 0.1
-          })
-
-          gsap.to('.hero-fragment-bottom-right', {
-            x: 250 * progress,
-            y: 200 * progress,
-            rotation: 20 * progress,
-            opacity: 1 - progress * 0.8,
-            duration: 0.1
-          })
+            duration: 0,
+            ease: "none"
+          }, 0)
 
           // Hero text fade out
-          gsap.to('.hero-title, .hero-subtitle, .hero-cta', {
+          tl.to('.hero-title, .hero-subtitle, .hero-cta', {
             opacity: 1 - progress * 1.2,
             y: -50 * progress,
-            duration: 0.1
-          })
+            duration: 0,
+            ease: "none"
+          }, 0)
         }
       })
 
@@ -216,72 +216,56 @@ export default function HomePage() {
   }
 
   return (
-    <div id="smooth-wrapper" ref={smoothWrapperRef} className="overflow-hidden h-screen">
+    <div id="smooth-wrapper" ref={smoothWrapperRef} className="overflow-hidden">
       <div id="smooth-content">
         <Navigation />
         
         {/* Hero Section with Split Image Animation */}
-        <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-          {/* Image Fragments Container */}
-          <div className="absolute inset-0 w-full h-full">
-            {/* Top Row Images */}
+        <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-persian-green-600 via-persian-green-700 to-persian-green-800">
+          {/* Persian Green Background Layer - Now as section background */}
+          
+          {/* Hero Image Fragments - Vertical Strip Layout */}
+          <div className="absolute inset-0 z-10">
+            {/* Vertical Image Strip - Four columns */}
             <div 
-              className="hero-fragment hero-fragment-top-left absolute w-1/3 h-1/2 bg-cover bg-no-repeat"
+              className="hero-fragment hero-fragment-col-1 absolute w-1/4 h-full bg-cover bg-center bg-no-repeat"
               style={{ 
-                backgroundImage: 'url(/hero-animate-images/fromleft-top-1.jpg)',
+                backgroundImage: 'url(/imagy_images_vertical_2025-09-29/hero-animate_r1_c1_processed_by_imagy.jpg)',
                 top: '0%',
                 left: '0%'
               }}
             />
             <div 
-              className="hero-fragment hero-fragment-top-center absolute w-1/3 h-1/2 bg-cover bg-no-repeat"
+              className="hero-fragment hero-fragment-col-2 absolute w-1/4 h-full bg-cover bg-center bg-no-repeat"
               style={{ 
-                backgroundImage: 'url(/hero-animate-images/fromleft-top-2.jpg)',
+                backgroundImage: 'url(/imagy_images_vertical_2025-09-29/hero-animate_r1_c2_processed_by_imagy.jpg)',
                 top: '0%',
-                left: '33.33%'
+                left: '25%'
               }}
             />
             <div 
-              className="hero-fragment hero-fragment-top-right absolute w-1/3 h-1/2 bg-cover bg-no-repeat"
+              className="hero-fragment hero-fragment-col-3 absolute w-1/4 h-full bg-cover bg-center bg-no-repeat"
               style={{ 
-                backgroundImage: 'url(/hero-animate-images/fromleft-top-3.jpg)',
+                backgroundImage: 'url(/imagy_images_vertical_2025-09-29/hero-animate_r1_c3_processed_by_imagy.jpg)',
                 top: '0%',
-                left: '66.66%'
-              }}
-            />
-            
-            {/* Bottom Row Images */}
-            <div 
-              className="hero-fragment hero-fragment-bottom-left absolute w-1/3 h-1/2 bg-cover bg-no-repeat"
-              style={{ 
-                backgroundImage: 'url(/hero-animate-images/fromfelt-bottom-1.jpg)',
-                top: '50%',
-                left: '0%'
+                left: '50%'
               }}
             />
             <div 
-              className="hero-fragment hero-fragment-bottom-center absolute w-1/3 h-1/2 bg-cover bg-no-repeat"
+              className="hero-fragment hero-fragment-col-4 absolute w-1/4 h-full bg-cover bg-center bg-no-repeat"
               style={{ 
-                backgroundImage: 'url(/hero-animate-images/fromleft-bottom-2.jpg)',
-                top: '50%',
-                left: '33.33%'
-              }}
-            />
-            <div 
-              className="hero-fragment hero-fragment-bottom-right absolute w-1/3 h-1/2 bg-cover bg-no-repeat"
-              style={{ 
-                backgroundImage: 'url(/hero-animate-images/fromleft-bottom-3.jpg)',
-                top: '50%',
-                left: '66.66%'
+                backgroundImage: 'url(/imagy_images_vertical_2025-09-29/hero-animate_r1_c4_processed_by_imagy.jpg)',
+                top: '0%',
+                left: '75%'
               }}
             />
           </div>
           
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-persian-green-900/80 via-persian-green-800/60 to-persian-green-700/40" />
+          <div className="absolute inset-0 bg-gradient-to-br from-persian-green-900/60 via-persian-green-800/40 to-persian-green-700/20 z-20" />
           
           {/* Hero Content */}
-          <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+          <div className="relative z-30 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
             <h1 className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               Discover Authentic
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-red-500">
@@ -303,10 +287,10 @@ export default function HomePage() {
           </div>
 
           {/* Floating Elements */}
-          <div className="absolute top-20 left-10 w-16 h-16 bg-amber-400/20 rounded-full animate-pulse" />
-          <div className="absolute top-40 right-20 w-12 h-12 bg-orange-500/30 rounded-full animate-bounce" />
-          <div className="absolute bottom-32 left-20 w-20 h-20 bg-red-400/25 rounded-full animate-ping" />
-          <div className="absolute bottom-20 right-10 w-14 h-14 bg-persian-green-400/30 rounded-full animate-pulse" />
+          <div className="absolute top-20 left-10 w-16 h-16 bg-amber-400/20 rounded-full animate-pulse z-25" />
+          <div className="absolute top-40 right-20 w-12 h-12 bg-orange-500/30 rounded-full animate-bounce z-25" />
+          <div className="absolute bottom-32 left-20 w-20 h-20 bg-red-400/25 rounded-full animate-ping z-25" />
+          <div className="absolute bottom-20 right-10 w-14 h-14 bg-persian-green-400/30 rounded-full animate-pulse z-25" />
         </section>
 
       {/* Artisan Spotlight Carousel */}

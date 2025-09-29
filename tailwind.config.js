@@ -30,6 +30,19 @@ module.exports = {
           800: '#134e4a',
           900: '#134e4a',
         },
+        // Persian Green Color Palette
+        'persian-green': {
+          50: '#f0fdf9',
+          100: '#ccfbef',
+          200: '#99f6e0',
+          300: '#5eead4',
+          400: '#2dd4bf',
+          500: '#2A9D8F', // Primary Persian Green
+          600: '#0f766e',
+          700: '#0f5d5a',
+          800: '#134e4a',
+          900: '#134e4a',
+        },
         // Cultural Palette
         'ivory': '#F8F8F5',
         'copper-patina': '#9D7A6D',
