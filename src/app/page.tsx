@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import Link from 'next/link'
 import { ArrowRight, Download, Star, Users, Globe } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -13,33 +14,148 @@ import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
 
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 }
 
 export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null)
   const featuresRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
+  const smoothWrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
 
     const ctx = gsap.context(() => {
-      // Hero animation
+      // Initialize ScrollSmoother
+      ScrollSmoother.create({
+        wrapper: smoothWrapperRef.current,
+        content: "#smooth-content",
+        smooth: 1,
+        effects: true,
+        smoothTouch: 0.1
+      })
+
+      // Set initial state for image fragments
+      gsap.set('.hero-fragment', { 
+        scale: 1,
+        opacity: 1,
+        rotation: 0,
+        x: 0,
+        y: 0
+      })
+
+      // Hero text animations
       gsap.fromTo('.hero-title', 
         { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
+        { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }
       )
 
       gsap.fromTo('.hero-subtitle', 
         { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power3.out' }
+        { opacity: 1, y: 0, duration: 1.2, delay: 0.4, ease: 'power3.out' }
       )
 
       gsap.fromTo('.hero-cta', 
         { opacity: 0, scale: 0.9 },
-        { opacity: 1, scale: 1, duration: 0.8, delay: 0.6, ease: 'back.out(1.7)' }
+        { opacity: 1, scale: 1, duration: 1, delay: 0.8, ease: 'back.out(1.7)' }
       )
+
+      // Image fragment split animation on scroll
+      ScrollTrigger.create({
+        trigger: heroRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+        onUpdate: (self) => {
+          const progress = self.progress
+
+          // Top row fragments - split upward and outward
+          gsap.to('.hero-fragment-top-left', {
+            x: -200 * progress,
+            y: -150 * progress,
+            rotation: -15 * progress,
+            opacity: 1 - progress * 0.8,
+            duration: 0.1
+          })
+
+          gsap.to('.hero-fragment-top-center', {
+            y: -200 * progress,
+            rotation: 5 * progress,
+            opacity: 1 - progress * 0.8,
+            duration: 0.1
+          })
+
+          gsap.to('.hero-fragment-top-right', {
+            x: 200 * progress,
+            y: -150 * progress,
+            rotation: 15 * progress,
+            opacity: 1 - progress * 0.8,
+            duration: 0.1
+          })
+
+          // Bottom row fragments - split downward and outward
+          gsap.to('.hero-fragment-bottom-left', {
+            x: -250 * progress,
+            y: 200 * progress,
+            rotation: -20 * progress,
+            opacity: 1 - progress * 0.8,
+            duration: 0.1
+          })
+
+          gsap.to('.hero-fragment-bottom-center', {
+            y: 250 * progress,
+            rotation: -10 * progress,
+            opacity: 1 - progress * 0.8,
+            duration: 0.1
+          })
+
+          gsap.to('.hero-fragment-bottom-right', {
+            x: 250 * progress,
+            y: 200 * progress,
+            rotation: 20 * progress,
+            opacity: 1 - progress * 0.8,
+            duration: 0.1
+          })
+
+          // Hero text fade out
+          gsap.to('.hero-title, .hero-subtitle, .hero-cta', {
+            opacity: 1 - progress * 1.2,
+            y: -50 * progress,
+            duration: 0.1
+          })
+        }
+      })
+
+      // Reassembly animation when scrolling back to top
+      ScrollTrigger.create({
+        trigger: heroRef.current,
+        start: "top bottom",
+        end: "top top",
+        scrub: 1,
+        onUpdate: (self) => {
+          const progress = 1 - self.progress // Reverse progress for reassembly
+
+          // When scrolling back up, fragments return to original positions
+          if (progress > 0.8) {
+            gsap.to('.hero-fragment', {
+              x: 0,
+              y: 0,
+              rotation: 0,
+              opacity: 1,
+              duration: 0.3,
+              ease: 'power2.out'
+            })
+
+            gsap.to('.hero-title, .hero-subtitle, .hero-cta', {
+              opacity: 1,
+              y: 0,
+              duration: 0.3,
+              ease: 'power2.out'
+            })
+          }
+        }
+      })
 
       // Features animation
       gsap.fromTo('.feature-card', 
@@ -100,48 +216,107 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-ivory">
-      <Navigation />
-      
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden kitenge-overlay">
-        <div className="absolute inset-0 gradient-persian-1 opacity-90"></div>
-        <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <h1 className="hero-title text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-ivory to-copper-patina">
-              Craft&Art Marketplace
-            </span>
-          </h1>
-          <p className="hero-subtitle text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
-            Connect with local artisans, explore traditional crafts, and bring the beauty of Tanzania to your world through our culturally-infused marketplace.
-          </p>
-          <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              onClick={handleAppDownload}
-              className="ceramic-button text-lg px-8 py-4 rounded-xl font-semibold flex items-center gap-3 hover:scale-105 transition-transform"
-            >
-              <Download className="w-6 h-6" />
-              Download App
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-
-          </div>
-        </div>
+    <div id="smooth-wrapper" ref={smoothWrapperRef} className="overflow-hidden h-screen">
+      <div id="smooth-content">
+        <Navigation />
         
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 rounded-full bg-copper-patina opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-32 right-16 w-16 h-16 rounded-full bg-zanzibar-twilight opacity-30 animate-bounce"></div>
-        <div className="absolute top-1/2 left-1/4 w-12 h-12 rounded-full bg-ivory opacity-10 animate-ping"></div>
-      </section>
+        {/* Hero Section with Split Image Animation */}
+        <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+          {/* Image Fragments Container */}
+          <div className="absolute inset-0 w-full h-full">
+            {/* Top Row Images */}
+            <div 
+              className="hero-fragment hero-fragment-top-left absolute w-1/3 h-1/2 bg-cover bg-no-repeat"
+              style={{ 
+                backgroundImage: 'url(/hero-animate-images/fromleft-top-1.jpg)',
+                top: '0%',
+                left: '0%'
+              }}
+            />
+            <div 
+              className="hero-fragment hero-fragment-top-center absolute w-1/3 h-1/2 bg-cover bg-no-repeat"
+              style={{ 
+                backgroundImage: 'url(/hero-animate-images/fromleft-top-2.jpg)',
+                top: '0%',
+                left: '33.33%'
+              }}
+            />
+            <div 
+              className="hero-fragment hero-fragment-top-right absolute w-1/3 h-1/2 bg-cover bg-no-repeat"
+              style={{ 
+                backgroundImage: 'url(/hero-animate-images/fromleft-top-3.jpg)',
+                top: '0%',
+                left: '66.66%'
+              }}
+            />
+            
+            {/* Bottom Row Images */}
+            <div 
+              className="hero-fragment hero-fragment-bottom-left absolute w-1/3 h-1/2 bg-cover bg-no-repeat"
+              style={{ 
+                backgroundImage: 'url(/hero-animate-images/fromfelt-bottom-1.jpg)',
+                top: '50%',
+                left: '0%'
+              }}
+            />
+            <div 
+              className="hero-fragment hero-fragment-bottom-center absolute w-1/3 h-1/2 bg-cover bg-no-repeat"
+              style={{ 
+                backgroundImage: 'url(/hero-animate-images/fromleft-bottom-2.jpg)',
+                top: '50%',
+                left: '33.33%'
+              }}
+            />
+            <div 
+              className="hero-fragment hero-fragment-bottom-right absolute w-1/3 h-1/2 bg-cover bg-no-repeat"
+              style={{ 
+                backgroundImage: 'url(/hero-animate-images/fromleft-bottom-3.jpg)',
+                top: '50%',
+                left: '66.66%'
+              }}
+            />
+          </div>
+          
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-persian-green-900/80 via-persian-green-800/60 to-persian-green-700/40" />
+          
+          {/* Hero Content */}
+          <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <h1 className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+              Discover Authentic
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-red-500">
+                African Crafts
+              </span>
+            </h1>
+            
+            <p className="hero-subtitle text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Connect directly with skilled artisans and bring home pieces of African heritage, 
+              crafted with passion and tradition.
+            </p>
+            
+            <button 
+              onClick={handleAppDownload}
+              className="hero-cta bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              Download App
+            </button>
+          </div>
+
+          {/* Floating Elements */}
+          <div className="absolute top-20 left-10 w-16 h-16 bg-amber-400/20 rounded-full animate-pulse" />
+          <div className="absolute top-40 right-20 w-12 h-12 bg-orange-500/30 rounded-full animate-bounce" />
+          <div className="absolute bottom-32 left-20 w-20 h-20 bg-red-400/25 rounded-full animate-ping" />
+          <div className="absolute bottom-20 right-10 w-14 h-14 bg-persian-green-400/30 rounded-full animate-pulse" />
+        </section>
 
       {/* Artisan Spotlight Carousel */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-graphite mb-4">
+            <h2 className="text-4xl md:text-5xl text-extra-thin text-graphite mb-4">
               Meet Our <span className="text-craftart-500">Artisans</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-light text-gray-600 max-w-2xl mx-auto">
               Discover the stories behind the crafts and the talented hands that create them.
             </p>
           </div>
@@ -153,7 +328,7 @@ export default function HomePage() {
       <section ref={featuresRef} className="py-20 bg-gray-50 paper-grain">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-graphite mb-4">
+            <h2 className="text-4xl md:text-5xl text-extra-thin text-graphite mb-4">
               Why Choose <span className="text-craftart-500">Craft&Art Marketplace</span>?
             </h2>
           </div>
@@ -163,8 +338,8 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-craftart-500 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Users className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-graphite mb-4">Authentic Artisans</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="text-2xl text-light text-graphite mb-4">Authentic Artisans</h3>
+                <p className="text-light text-gray-600 leading-relaxed font-small-text">
                   Connect directly with verified Tanzanian artisans who preserve traditional crafting techniques passed down through generations.
                 </p>
               </CardContent>
@@ -175,8 +350,8 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-copper-patina rounded-full flex items-center justify-center mx-auto mb-6">
                   <Star className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-graphite mb-4">Quality Guaranteed</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="text-2xl text-light text-graphite mb-4">Quality Guaranteed</h3>
+                <p className="text-light text-gray-600 leading-relaxed font-small-text">
                   Every piece is carefully curated and authenticated to ensure you receive genuine, high-quality Tanzanian crafts.
                 </p>
               </CardContent>
@@ -187,8 +362,8 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-zanzibar-twilight rounded-full flex items-center justify-center mx-auto mb-6">
                   <Globe className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-graphite mb-4">Global Impact</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="text-2xl text-light text-graphite mb-4">Global Impact</h3>
+                <p className="text-light text-gray-600 leading-relaxed font-small-text">
                   Support local communities and preserve cultural heritage while bringing beautiful, meaningful art to your home.
                 </p>
               </CardContent>
@@ -202,20 +377,20 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="stat-item">
-              <div className="text-4xl md:text-5xl font-bold mb-2">500+</div>
-              <div className="text-lg opacity-90">Verified Artisans</div>
+              <div className="text-4xl md:text-5xl text-extra-thin mb-2">500+</div>
+              <div className="text-lg font-small-text opacity-90">Verified Artisans</div>
             </div>
             <div className="stat-item">
-              <div className="text-4xl md:text-5xl font-bold mb-2">10K+</div>
-              <div className="text-lg opacity-90">Happy Customers</div>
+              <div className="text-4xl md:text-5xl text-extra-thin mb-2">10K+</div>
+              <div className="text-lg font-small-text opacity-90">Happy Customers</div>
             </div>
             <div className="stat-item">
-              <div className="text-4xl md:text-5xl font-bold mb-2">25+</div>
-              <div className="text-lg opacity-90">Craft Categories</div>
+              <div className="text-4xl md:text-5xl text-extra-thin mb-2">25+</div>
+              <div className="text-lg font-small-text opacity-90">Craft Categories</div>
             </div>
             <div className="stat-item">
-              <div className="text-4xl md:text-5xl font-bold mb-2">98%</div>
-              <div className="text-lg opacity-90">Satisfaction Rate</div>
+              <div className="text-4xl md:text-5xl text-extra-thin mb-2">98%</div>
+              <div className="text-lg font-small-text opacity-90">Satisfaction Rate</div>
             </div>
           </div>
         </div>
@@ -225,10 +400,10 @@ export default function HomePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-graphite mb-4">
+            <h2 className="text-3xl md:text-4xl text-extra-thin text-graphite mb-4">
               Trust & <span className="text-craftart-500">Transparency</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-light text-gray-600 max-w-2xl mx-auto">
               Learn about our policies, protections, and commitment to creating a safe, fair marketplace for everyone.
             </p>
           </div>
@@ -242,8 +417,8 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-graphite mb-2">Terms of Service</h3>
-                  <p className="text-sm text-gray-600">Platform rules and user responsibilities</p>
+                  <h3 className="text-lg text-light text-graphite mb-2">Terms of Service</h3>
+                  <p className="text-sm font-small-text text-gray-600">Platform rules and user responsibilities</p>
                 </CardContent>
               </Card>
             </Link>
@@ -256,8 +431,8 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-graphite mb-2">Privacy Policy</h3>
-                  <p className="text-sm text-gray-600">How we protect your personal data</p>
+                  <h3 className="text-lg text-light text-graphite mb-2">Privacy Policy</h3>
+                  <p className="text-sm font-small-text text-gray-600">How we protect your personal data</p>
                 </CardContent>
               </Card>
             </Link>
@@ -270,8 +445,8 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-graphite mb-2">Buyer Protection</h3>
-                  <p className="text-sm text-gray-600">Your rights and purchase guarantees</p>
+                  <h3 className="text-lg text-light text-graphite mb-2">Buyer Protection</h3>
+                  <p className="text-sm font-small-text text-gray-600">Your rights and purchase guarantees</p>
                 </CardContent>
               </Card>
             </Link>
@@ -284,8 +459,8 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-graphite mb-2">Community Guidelines</h3>
-                  <p className="text-sm text-gray-600">Standards for respectful interaction</p>
+                  <h3 className="text-lg text-light text-graphite mb-2">Community Guidelines</h3>
+                  <p className="text-sm font-small-text text-gray-600">Standards for respectful interaction</p>
                 </CardContent>
               </Card>
             </Link>
@@ -305,15 +480,15 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-graphite mb-6">
+          <h2 className="text-4xl md:text-5xl text-extra-thin text-graphite mb-6">
             Ready to Start Your Journey?
           </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-light text-gray-600 mb-8 max-w-2xl mx-auto">
             Download our app today and discover the rich cultural heritage of Tanzania through authentic crafts and meaningful connections.
           </p>
           <Button 
             onClick={handleAppDownload}
-            className="ceramic-button text-lg px-12 py-4 rounded-xl font-semibold flex items-center gap-3 mx-auto hover:scale-105 transition-transform"
+            className="ceramic-button text-lg px-12 py-4 rounded-xl flex items-center gap-3 mx-auto hover:scale-105 transition-transform"
           >
             <Download className="w-6 h-6" />
             Get Started Now
@@ -323,6 +498,7 @@ export default function HomePage() {
       </section>
 
       <Footer />
+      </div>
     </div>
   )
 }

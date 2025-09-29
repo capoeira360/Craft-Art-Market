@@ -221,7 +221,7 @@ export default function HelpCenterPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-persian-green-600 to-persian-green-800 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-4xl md:text-5xl text-extra-thin mb-6">
             How can we help you?
           </h1>
           <p className="text-xl mb-8 text-persian-green-100">
@@ -245,7 +245,7 @@ export default function HelpCenterPage() {
       {/* Quick Help Section */}
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-graphite mb-8 text-center">
+          <h2 className="text-3xl text-light text-graphite mb-8 text-center">
             Quick Help
           </h2>
           
@@ -258,8 +258,8 @@ export default function HelpCenterPage() {
                     <div className="w-12 h-12 bg-persian-green-100 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-persian-green-200 transition-colors">
                       <IconComponent className="w-6 h-6 text-persian-green-600" />
                     </div>
-                    <h3 className="font-semibold text-graphite mb-2">{item.title}</h3>
-                    <p className="text-gray-600 text-sm mb-4">{item.description}</p>
+                    <h3 className="text-light text-graphite mb-2">{item.title}</h3>
+                    <p className="text-gray-600 text-sm mb-4 font-small-text">{item.description}</p>
                     <ArrowRight className="w-4 h-4 text-persian-green-600 mx-auto group-hover:translate-x-1 transition-transform" />
                   </CardContent>
                 </Card>
@@ -272,7 +272,7 @@ export default function HelpCenterPage() {
       {/* FAQ Section */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-graphite mb-8 text-center">
+          <h2 className="text-3xl text-light text-graphite mb-8 text-center">
             Frequently Asked Questions
           </h2>
           
@@ -296,8 +296,8 @@ export default function HelpCenterPage() {
                         <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center bg-white", category.color)}>
                           <IconComponent className="w-5 h-5" />
                         </div>
-                        <CardTitle className="text-xl">{category.title}</CardTitle>
-                        <span className="text-sm text-gray-500">({category.questions.length})</span>
+                        <CardTitle className="text-xl text-light">{category.title}</CardTitle>
+                        <span className="text-sm text-gray-500 font-small-text">({category.questions.length})</span>
                       </div>
                       {isExpanded ? (
                         <ChevronDown className="w-5 h-5 text-gray-500" />
@@ -321,7 +321,7 @@ export default function HelpCenterPage() {
                                 onClick={() => toggleQuestion(questionId)}
                               >
                                 <div className="flex items-center justify-between">
-                                  <h4 className="font-medium text-graphite pr-4">{faq.question}</h4>
+                                  <h4 className="text-light text-graphite pr-4">{faq.question}</h4>
                                   {isQuestionExpanded ? (
                                     <ChevronDown className="w-4 h-4 text-gray-500 flex-shrink-0" />
                                   ) : (
@@ -349,7 +349,7 @@ export default function HelpCenterPage() {
           {searchQuery && filteredCategories.length === 0 && (
             <div className="text-center py-12">
               <HelpCircle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-500 mb-2">No results found</h3>
+              <h3 className="text-xl text-light text-gray-500 mb-2">No results found</h3>
               <p className="text-gray-400">Try different keywords or contact our support team</p>
             </div>
           )}
@@ -359,7 +359,7 @@ export default function HelpCenterPage() {
       {/* Contact Support Section */}
       <section className="py-16 bg-persian-green-50">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-graphite mb-6">
+          <h2 className="text-3xl text-light text-graphite mb-6">
             Still need help?
           </h2>
           <p className="text-xl text-gray-600 mb-8">
@@ -369,7 +369,7 @@ export default function HelpCenterPage() {
           <div className="grid md:grid-cols-3 gap-6">
             <Card className="p-6">
               <MessageCircle className="w-8 h-8 text-persian-green-600 mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Live Chat</h3>
+              <h3 className="text-light mb-2">Live Chat</h3>
               <p className="text-gray-600 text-sm mb-4">Get instant help from our support team</p>
               <Button className="w-full">
                 Start Chat
@@ -378,7 +378,7 @@ export default function HelpCenterPage() {
             
             <Card className="p-6">
               <Mail className="w-8 h-8 text-persian-green-600 mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Email Support</h3>
+              <h3 className="text-light mb-2">Email Support</h3>
               <p className="text-gray-600 text-sm mb-4">Send us a detailed message</p>
               <Button variant="outline" className="w-full">
                 Send Email
@@ -387,7 +387,7 @@ export default function HelpCenterPage() {
             
             <Card className="p-6">
               <Phone className="w-8 h-8 text-persian-green-600 mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Phone Support</h3>
+              <h3 className="text-light mb-2">Phone Support</h3>
               <p className="text-gray-600 text-sm mb-4">Call us for immediate assistance</p>
               <Button variant="outline" className="w-full">
                 Call Now

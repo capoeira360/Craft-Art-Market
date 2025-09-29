@@ -174,7 +174,7 @@ export default function CategoriesPage() {
               <span className="text-white font-medium">Categories</span>
             </nav>
             
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
+            <h1 className="text-4xl md:text-6xl text-extra-thin text-white mb-6 drop-shadow-lg">
               Craft Categories
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-md">
@@ -231,11 +231,11 @@ export default function CategoriesPage() {
                   <div className={`inline-flex items-center justify-center w-16 h-16 ${stat.bgColor} rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
                     <Icon className={`w-8 h-8 ${stat.color}`} />
                   </div>
-                  <div className={`text-4xl font-bold text-gray-900 mb-2 transition-all duration-1000 ${animatedStats ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'}`}>
+                  <div className={`text-4xl text-light text-gray-900 mb-2 transition-all duration-1000 ${animatedStats ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'}`}>
                     {typeof stat.value === 'number' && stat.value > 10 ? 
                       animatedStats ? stat.value : 0 : stat.value}
                   </div>
-                  <div className="text-gray-600 font-medium">{stat.label}</div>
+                  <div className="text-gray-600 text-light">{stat.label}</div>
                 </div>
               );
             })}
@@ -249,7 +249,7 @@ export default function CategoriesPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap items-center gap-6">
               <div className="flex items-center space-x-3">
-                <label className="text-sm font-medium text-gray-700">Difficulty:</label>
+                <label className="text-sm text-light text-gray-700">Difficulty:</label>
                 <select 
                   value={selectedDifficulty} 
                   onChange={(e) => setSelectedDifficulty(e.target.value)}
@@ -263,7 +263,7 @@ export default function CategoriesPage() {
               </div>
               
               <div className="flex items-center space-x-3">
-                <label className="text-sm font-medium text-gray-700">Price Range:</label>
+                <label className="text-sm text-light text-gray-700">Price Range:</label>
                 <select 
                   value={selectedPriceRange} 
                   onChange={(e) => setSelectedPriceRange(e.target.value)}
@@ -277,7 +277,7 @@ export default function CategoriesPage() {
               </div>
               
               <div className="flex items-center space-x-3">
-                <label className="text-sm font-medium text-gray-700">Sort by:</label>
+                <label className="text-sm text-light text-gray-700">Sort by:</label>
                 <select 
                   value={sortBy} 
                   onChange={(e) => setSortBy(e.target.value)}
@@ -317,7 +317,7 @@ export default function CategoriesPage() {
       <section className="py-12 bg-gradient-to-r from-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 flex items-center">
+            <h2 className="text-3xl text-light text-gray-900 flex items-center">
               <TrendingUp className="w-8 h-8 text-green-600 mr-3" />
               Trending Categories
             </h2>
@@ -326,7 +326,7 @@ export default function CategoriesPage() {
             {trendingCategories.map((category, index) => (
               <div key={index} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-semibold text-gray-900">{category.name}</h3>
+                  <h3 className="text-light text-gray-900">{category.name}</h3>
                   <span className={`text-sm font-bold ${category.color}`}>{category.growth}</span>
                 </div>
                 <div className="mt-2 flex items-center">
@@ -343,7 +343,7 @@ export default function CategoriesPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
-            <h2 className="text-4xl font-bold text-gray-900">
+            <h2 className="text-4xl text-light text-gray-900">
               All Categories
               <span className="text-lg font-normal text-gray-600 ml-3">({filteredCategories.length} found)</span>
             </h2>
@@ -405,12 +405,12 @@ export default function CategoriesPage() {
                 {/* Category Content */}
                 <div className={viewMode === 'list' ? 'ml-6 flex-1' : 'p-6'}>
                   <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-persian-green-600 transition-colors">
+                    <h3 className="text-xl text-light text-gray-900 group-hover:text-persian-green-600 transition-colors">
                       {category.name}
                     </h3>
                     <div className="flex items-center">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="text-sm font-medium text-gray-600 ml-1">{category.rating}</span>
+                      <span className="text-sm text-light text-gray-600 ml-1">{category.rating}</span>
                     </div>
                   </div>
                   
@@ -440,11 +440,11 @@ export default function CategoriesPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="text-sm text-gray-500">Price Range</div>
-                      <div className="font-semibold text-persian-green-600">{category.priceRange}</div>
+                      <div className="text-light text-persian-green-600">{category.priceRange}</div>
                     </div>
                     <div className="text-right">
                       <div className="text-sm text-gray-500">Difficulty</div>
-                      <div className={`font-semibold ${
+                      <div className={`text-light ${
                         category.difficulty === 'Beginner' ? 'text-green-600' :
                         category.difficulty === 'Intermediate' ? 'text-yellow-600' : 'text-red-600'
                       }`}>{category.difficulty}</div>
@@ -464,7 +464,7 @@ export default function CategoriesPage() {
           {filteredCategories.length === 0 && (
             <div className="text-center py-16">
               <div className="text-gray-400 text-6xl mb-4">🔍</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">No categories found</h3>
+              <h3 className="text-2xl text-light text-gray-900 mb-2">No categories found</h3>
               <p className="text-gray-600">Try adjusting your search or filter criteria</p>
             </div>
           )}
@@ -478,7 +478,7 @@ export default function CategoriesPage() {
           <div className="absolute bottom-0 right-0 w-80 h-80 bg-emerald-400/10 rounded-full blur-2xl"></div>
         </div>
         <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl text-extra-thin text-white mb-6">
             Ready to Start Your
             <span className="block text-yellow-300">Craft Journey?</span>
           </h2>
@@ -486,11 +486,11 @@ export default function CategoriesPage() {
             Join thousands of craft enthusiasts and discover the perfect category for your next project
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-persian-green-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center">
+            <button className="bg-white text-persian-green-600 px-8 py-4 rounded-xl text-light hover:bg-gray-100 transition-colors flex items-center justify-center">
               Browse All Products
               <ChevronRight className="w-5 h-5 ml-2" />
             </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-persian-green-600 transition-colors">
+            <button className="border-2 border-white text-white px-8 py-4 rounded-xl text-light hover:bg-white hover:text-persian-green-600 transition-colors">
               Meet Our Artisans
             </button>
           </div>

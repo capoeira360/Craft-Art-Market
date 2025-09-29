@@ -90,7 +90,7 @@ export default function AboutPage() {
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-6xl text-extra-thin text-gray-900 mb-6">
               About <span className="text-green-600">Craft&Art Marketplace</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -103,10 +103,10 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-green-600 mb-2">
+                <div className="text-3xl md:text-4xl text-light text-green-600 mb-2">
                   {stat.number}
                 </div>
-                <div className="text-gray-600 font-medium">{stat.label}</div>
+                <div className="text-gray-600 text-light font-small-text">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -118,7 +118,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl text-light text-gray-900 mb-6">
                 Our Story
               </h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
@@ -161,7 +161,7 @@ export default function AboutPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl text-light text-gray-900 mb-4">
               Our Values
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -173,8 +173,8 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <Card key={index} className="p-6 hover:shadow-lg transition-shadow duration-300">
                 <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                <h3 className="text-xl text-light text-gray-900 mb-3">{value.title}</h3>
+                <p className="text-gray-600 leading-relaxed font-small-text">{value.description}</p>
               </Card>
             ))}
           </div>
@@ -185,7 +185,7 @@ export default function AboutPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl text-light text-gray-900 mb-4">
               Our Journey
             </h2>
             <p className="text-xl text-gray-600">
@@ -205,10 +205,10 @@ export default function AboutPage() {
                   
                   {/* Content */}
                   <div className="ml-16">
-                    <div className="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full inline-block mb-2">
+                    <div className="bg-green-100 text-green-800 text-sm text-light px-3 py-1 rounded-full inline-block mb-2">
                       {milestone.year}
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{milestone.title}</h3>
+                    <h3 className="text-xl text-light text-gray-900 mb-2">{milestone.title}</h3>
                     <p className="text-gray-600">{milestone.description}</p>
                   </div>
                 </div>
@@ -222,7 +222,7 @@ export default function AboutPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl text-light text-gray-900 mb-4">
               Our Artisan Communities
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -235,7 +235,7 @@ export default function AboutPage() {
               <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <span className="text-2xl">🏺</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Ceramic & Glass Artists</h3>
+              <h3 className="text-xl text-light text-gray-900 mb-3 text-center">Ceramic & Glass Artists</h3>
               <p className="text-gray-600 text-center leading-relaxed">
                 Master potters from Dodoma and glass artisans creating functional and decorative pieces using traditional techniques passed down through generations.
               </p>
@@ -245,7 +245,7 @@ export default function AboutPage() {
               <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <span className="text-2xl">🌿</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Natural Material Crafters</h3>
+              <h3 className="text-xl text-light text-gray-900 mb-3 text-center">Natural Material Crafters</h3>
               <p className="text-gray-600 text-center leading-relaxed">
                 Skilled weavers from coastal regions creating beautiful baskets, mats, and bags from sisal, palm leaves, and other sustainable materials.
               </p>
@@ -255,7 +255,7 @@ export default function AboutPage() {
               <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <span className="text-2xl">💎</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Jewellery Artisans</h3>
+              <h3 className="text-xl text-light text-gray-900 mb-3 text-center">Jewellery Artisans</h3>
               <p className="text-gray-600 text-center leading-relaxed">
                 Talented beadwork artists and metalworkers from Maasai and other communities creating stunning traditional and contemporary jewelry pieces.
               </p>
@@ -265,7 +265,7 @@ export default function AboutPage() {
               <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <span className="text-2xl">🧵</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Textile & Fiber Artists</h3>
+              <h3 className="text-xl text-light text-gray-900 mb-3 text-center">Textile & Fiber Artists</h3>
               <p className="text-gray-600 text-center leading-relaxed">
                 Expert weavers and textile artists creating vibrant kanga, kitenge, and handwoven fabrics that celebrate Tanzanian cultural heritage.
               </p>
@@ -275,7 +275,7 @@ export default function AboutPage() {
               <div className="w-16 h-16 bg-gradient-to-br from-red-400 to-rose-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <span className="text-2xl">🎨</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Visual Artists</h3>
+              <h3 className="text-xl text-light text-gray-900 mb-3 text-center">Visual Artists</h3>
               <p className="text-gray-600 text-center leading-relaxed">
                 Contemporary and traditional painters, sculptors, and mixed-media artists from urban and rural areas showcasing Tanzania's artistic diversity.
               </p>
@@ -285,7 +285,7 @@ export default function AboutPage() {
               <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-cyan-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <span className="text-2xl">♻️</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Upcycling Innovators</h3>
+              <h3 className="text-xl text-light text-gray-900 mb-3 text-center">Upcycling Innovators</h3>
               <p className="text-gray-600 text-center leading-relaxed">
                 Creative artisans transforming waste materials into beautiful, functional art pieces, promoting sustainability and environmental consciousness.
               </p>
@@ -297,7 +297,7 @@ export default function AboutPage() {
       {/* Call to Action Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-green-600 to-emerald-700">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl text-light text-white mb-6">
             Join Our Mission
           </h2>
           <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
@@ -307,7 +307,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-white text-green-600 hover:bg-gray-100 font-semibold px-8 py-3"
+              className="bg-white text-green-600 hover:bg-gray-100 text-light px-8 py-3"
               onClick={() => window.location.href = '/artisan/register'}
             >
               Become an Artisan
@@ -315,7 +315,7 @@ export default function AboutPage() {
             <Button 
               size="lg" 
               variant="outline" 
-              className="ceramic-button text-lg px-8 py-4 rounded-xl font-semibold border-2 border-white text-white bg-black/20 backdrop-blur-sm hover:bg-white hover:text-green-600 shadow-lg hover:scale-105 transition-transform"
+              className="ceramic-button text-lg px-8 py-4 rounded-xl text-light border-2 border-white text-white bg-black/20 backdrop-blur-sm hover:bg-white hover:text-green-600 shadow-lg hover:scale-105 transition-transform"
               onClick={() => window.open('https://play.google.com/store/apps/details?id=com.craftandartmarketplace.buyer', '_blank')}
             >
               Start Shopping

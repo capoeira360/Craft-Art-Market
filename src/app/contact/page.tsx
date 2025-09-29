@@ -114,7 +114,7 @@ export default function ContactPage() {
         
         <div className="relative container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
+            <h1 className="text-4xl md:text-6xl text-extra-thin text-white mb-6 drop-shadow-lg">
               Get in Touch
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 drop-shadow-md">
@@ -144,12 +144,12 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold text-graphite mb-6">Send us a Message</h2>
+              <h2 className="text-3xl text-light text-graphite mb-6">Send us a Message</h2>
               <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-graphite mb-2">
+                      <label htmlFor="name" className="block text-sm text-light text-graphite mb-2 font-small-text">
                         Full Name *
                       </label>
                       <input
@@ -164,7 +164,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-graphite mb-2">
+                      <label htmlFor="email" className="block text-sm text-light text-graphite mb-2 font-small-text">
                         Email Address *
                       </label>
                       <input
@@ -181,7 +181,7 @@ export default function ContactPage() {
                   </div>
                   
                   <div>
-                    <label htmlFor="type" className="block text-sm font-medium text-graphite mb-2">
+                    <label htmlFor="type" className="block text-sm text-light text-graphite mb-2 font-small-text">
                       Inquiry Type
                     </label>
                     <select
@@ -200,7 +200,7 @@ export default function ContactPage() {
                   </div>
                   
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-graphite mb-2">
+                    <label htmlFor="subject" className="block text-sm text-light text-graphite mb-2 font-small-text">
                       Subject *
                     </label>
                     <input
@@ -216,7 +216,7 @@ export default function ContactPage() {
                   </div>
                   
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-graphite mb-2">
+                    <label htmlFor="message" className="block text-sm text-light text-graphite mb-2 font-small-text">
                       Message *
                     </label>
                     <textarea
@@ -234,7 +234,7 @@ export default function ContactPage() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full ceramic-button text-white py-3 px-6 rounded-lg font-semibold flex items-center justify-center gap-2 hover:scale-105 transition-transform"
+                    className="w-full ceramic-button text-white py-3 px-6 rounded-lg text-light flex items-center justify-center gap-2 hover:scale-105 transition-transform"
                   >
                     {isSubmitting ? (
                       <>
@@ -254,17 +254,17 @@ export default function ContactPage() {
 
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold text-graphite mb-6">Contact Information</h2>
+              <h2 className="text-3xl text-light text-graphite mb-6">Contact Information</h2>
               
               <div className="space-y-6">
                 {/* Main Contact Info */}
                 <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-                  <h3 className="text-xl font-semibold text-graphite mb-4">Get in Touch</h3>
+                  <h3 className="text-xl text-light text-graphite mb-4">Get in Touch</h3>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
                       <Mail className="w-5 h-5 text-persian-green-500 mt-1" />
                       <div>
-                        <p className="font-medium text-graphite">Email</p>
+                        <p className="text-light text-graphite">Email</p>
                         <p className="text-graphite/70">{contactInfo.email}</p>
                       </div>
                     </div>
@@ -272,7 +272,7 @@ export default function ContactPage() {
                     <div className="flex items-start gap-3">
                       <Phone className="w-5 h-5 text-persian-green-500 mt-1" />
                       <div>
-                        <p className="font-medium text-graphite">Phone</p>
+                        <p className="text-light text-graphite">Phone</p>
                         <p className="text-graphite/70">{contactInfo.phone}</p>
                       </div>
                     </div>
@@ -280,7 +280,7 @@ export default function ContactPage() {
                     <div className="flex items-start gap-3">
                       <MessageCircle className="w-5 h-5 text-persian-green-500 mt-1" />
                       <div>
-                        <p className="font-medium text-graphite">WhatsApp</p>
+                        <p className="text-light text-graphite">WhatsApp</p>
                         <p className="text-graphite/70">{contactInfo.whatsapp}</p>
                       </div>
                     </div>
@@ -288,7 +288,7 @@ export default function ContactPage() {
                     <div className="flex items-start gap-3">
                       <MapPin className="w-5 h-5 text-persian-green-500 mt-1" />
                       <div>
-                        <p className="font-medium text-graphite">Address</p>
+                        <p className="text-light text-graphite">Address</p>
                         <p className="text-graphite/70 whitespace-pre-line">{contactInfo.address}</p>
                       </div>
                     </div>
@@ -297,7 +297,7 @@ export default function ContactPage() {
 
                 {/* Business Hours */}
                 <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-                  <h3 className="text-xl font-semibold text-graphite mb-4 flex items-center gap-2">
+                  <h3 className="text-xl text-light text-graphite mb-4 flex items-center gap-2">
                     <Clock className="w-5 h-5 text-persian-green-500" />
                     Business Hours
                   </h3>
@@ -316,7 +316,7 @@ export default function ContactPage() {
       <section className="py-16 bg-gradient-to-br from-persian-green-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-graphite mb-4">Our Locations</h2>
+            <h2 className="text-3xl md:text-4xl text-light text-graphite mb-4">Our Locations</h2>
             <p className="text-xl text-graphite/70 max-w-2xl mx-auto">
               Visit us at any of our offices across Tanzania
             </p>
@@ -329,7 +329,7 @@ export default function ContactPage() {
                 office.isMain && "ring-2 ring-persian-green-500/20"
               )}>
                 <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-xl font-semibold text-graphite">{office.city}</h3>
+                  <h3 className="text-xl text-light text-graphite">{office.city}</h3>
                   {office.isMain && (
                     <span className="bg-persian-green-500 text-white text-xs px-2 py-1 rounded-full">
                       Main Office
@@ -354,7 +354,7 @@ export default function ContactPage() {
                   </div>
                   
                   <div className="pt-2 border-t border-copper-patina/20">
-                    <p className="text-sm font-medium text-graphite">Office Manager</p>
+                    <p className="text-sm text-light text-graphite">Office Manager</p>
                     <p className="text-sm text-graphite/70">{office.manager}</p>
                   </div>
                 </div>
@@ -368,7 +368,7 @@ export default function ContactPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-graphite mb-4">Frequently Asked Questions</h2>
+            <h2 className="text-3xl md:text-4xl text-light text-graphite mb-4">Frequently Asked Questions</h2>
             <p className="text-xl text-graphite/70 max-w-2xl mx-auto">
               Find quick answers to common questions about Craft&Art Marketplace
             </p>
@@ -382,7 +382,7 @@ export default function ContactPage() {
                   className="w-full p-6 text-left hover:bg-persian-green-50/50 transition-colors"
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-graphite pr-4">{faq.question}</h3>
+                    <h3 className="text-lg text-light text-graphite pr-4">{faq.question}</h3>
                     <div className={cn(
                       "w-6 h-6 rounded-full bg-persian-green-500 flex items-center justify-center transition-transform",
                       expandedFaq === faq.id && "rotate-45"

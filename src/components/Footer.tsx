@@ -60,7 +60,7 @@ export function Footer() {
                   className="w-full h-full object-contain"
                 />
               </div>
-              <span className="text-2xl font-bold">Craft&Art Marketplace</span>
+              <span className="text-2xl text-light logo">Craft&Art Marketplace</span>
             </Link>
             <p className="text-gray-300 mb-6 leading-relaxed">
               Connecting the world with authentic Tanzanian crafts and the talented artisans who create them. 
@@ -84,7 +84,7 @@ export function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-persian-green-500">Company</h3>
+            <h3 className="text-lg text-light mb-4 text-persian-green-500">Company</h3>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
@@ -101,7 +101,7 @@ export function Footer() {
 
           {/* Marketplace Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-persian-green-500">Marketplace</h3>
+            <h3 className="text-lg text-light mb-4 text-persian-green-500">Marketplace</h3>
             <ul className="space-y-3">
               {footerLinks.marketplace.map((link) => (
                 <li key={link.href}>
@@ -118,7 +118,7 @@ export function Footer() {
 
           {/* Support Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-persian-green-500">Support</h3>
+            <h3 className="text-lg text-light mb-4 text-persian-green-500">Support</h3>
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.href}>
@@ -135,7 +135,7 @@ export function Footer() {
 
           {/* Legal Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-persian-green-500">Legal</h3>
+            <h3 className="text-lg text-light mb-4 text-persian-green-500">Legal</h3>
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.href}>
@@ -154,7 +154,7 @@ export function Footer() {
         {/* Newsletter Signup */}
         <div className="mt-12 pt-8 border-t border-gray-700">
           <div className="max-w-md mx-auto text-center">
-            <h3 className="text-xl font-semibold mb-4 text-persian-green-500">
+            <h3 className="text-xl text-light mb-4 text-persian-green-500">
               Stay Connected
             </h3>
             <p className="text-gray-300 mb-6">

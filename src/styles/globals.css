@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Font Faces */
+@font-face {
+  font-family: 'Bandar';
+  src: url('/fonts/Bandar-K7EO7-small.text.ttf') format('truetype');
+  font-weight: 300 400 500 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --background: 248 248 245; /* Ivory */
@@ -45,8 +54,8 @@
     --popover: 51 51 51;
     --popover-foreground: 248 248 245;
 
-    --primary: 42 157 143; /* Persian Green */
-    --primary-foreground: 51 51 51;
+    --primary: 42 157 143;
+    --primary-foreground: 248 248 245;
 
     --secondary: 30 95 139;
     --secondary-foreground: 248 248 245;
@@ -72,45 +81,254 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
   }
 }
 
+/* Comprehensive Bandar Typography System */
+@layer base {
+  /* Base typography - Apply Bandar to all text elements */
+  h1, h2, h3, h4, h5, h6,
+  p, span, div, a, li, td, th,
+  label, input, textarea, select, button {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+  }
+
+  /* Heading hierarchy with Bandar font */
+  h1 {
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-weight: 300;
+    letter-spacing: 0.015em;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+
+  h4, h5, h6 {
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    line-height: 1.4;
+  }
+
+  /* Paragraph and body text */
+  p {
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.6;
+  }
+
+  /* Links */
+  a {
+    font-weight: 400;
+    letter-spacing: 0.005em;
+  }
+
+  /* Form elements */
+  label {
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  input, textarea, select {
+    font-weight: 400;
+    letter-spacing: 0.005em;
+  }
+
+  /* Buttons */
+  button, .btn, [role="button"] {
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+}
+
+/* Custom Typography Classes with Bandar */
+@layer utilities {
+  /* Weight variations */
+  .text-thin {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 200 !important;
+    letter-spacing: 0.025em !important;
+  }
+
+  .text-extra-thin {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 200 !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  .text-light {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  .text-normal {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.01em !important;
+  }
+
+  .text-normal-thin {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.015em !important;
+  }
+
+  .text-medium {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.005em !important;
+  }
+
+  .text-semibold {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.005em !important;
+  }
+
+  .text-bold {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.005em !important;
+  }
+
+  /* Size-specific classes */
+  .text-xs {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-size: 0.75rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.5 !important;
+  }
+
+  .text-sm {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.015em !important;
+    line-height: 1.5 !important;
+  }
+
+  .text-base {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.01em !important;
+    line-height: 1.6 !important;
+  }
+
+  .text-lg {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.01em !important;
+    line-height: 1.5 !important;
+  }
+
+  .text-xl {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.015em !important;
+    line-height: 1.4 !important;
+  }
+
+  .text-2xl {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.3 !important;
+  }
+
+  .text-3xl {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.025em !important;
+    line-height: 1.2 !important;
+  }
+
+  .text-4xl {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 200 !important;
+    letter-spacing: 0.03em !important;
+    line-height: 1.1 !important;
+  }
+
+  .text-5xl {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 200 !important;
+    letter-spacing: 0.035em !important;
+    line-height: 1.0 !important;
+  }
+
+  .text-6xl, .text-7xl {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 200 !important;
+    letter-spacing: 0.04em !important;
+    line-height: 0.9 !important;
+  }
+
+  /* Specific component classes */
+  .text-small,
+  .small-text,
+  .caption,
+  .meta-text,
+  .form-label,
+  .card-meta,
+  .stats-text,
+  .font-small-text {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Navigation and special elements */
+  .nav-link {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.015em !important;
+  }
+
+  .logo, .brand {
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  /* Ensure all Tailwind text utilities use Bandar */
+  .leading-tight { line-height: 1.25 !important; }
+  .leading-snug { line-height: 1.375 !important; }
+  .leading-normal { line-height: 1.5 !important; }
+  .leading-relaxed { line-height: 1.625 !important; }
+  .leading-loose { line-height: 2 !important; }
+}
+
+/* Component-specific overrides */
 @layer components {
-  /* CraftArtMarketplace Button Styles */
+  /* Button styles with Bandar */
   .btn-persian {
-    @apply bg-craftart-500 hover:bg-craftart-600 text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1;
+    @apply bg-craftart-500 hover:bg-craftart-600 text-white px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1;
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
   }
 
   .btn-persian-outline {
-    @apply border-2 border-craftart-500 text-craftart-500 hover:bg-craftart-500 hover:text-white font-medium px-6 py-3 rounded-lg transition-all duration-300;
+    @apply border-2 border-craftart-500 text-craftart-500 hover:bg-craftart-500 hover:text-white px-6 py-3 rounded-lg transition-all duration-300;
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
   }
 
-  /* Cultural Pattern Overlays */
-  .kitenge-overlay {
-    position: relative;
-  }
-
-  .kitenge-overlay::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/patterns/kitenge.svg');
-    background-repeat: repeat;
-    opacity: 0.15;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .paper-grain {
-    background-image: url('/textures/paper-grain.svg');
-    background-repeat: repeat;
-  }
-
-  /* Ceramic Button Effect */
   .ceramic-button {
     @apply relative overflow-hidden;
     background: linear-gradient(145deg, #2A9D8F, #0f766e);
@@ -118,6 +336,9 @@
       0 4px 15px rgba(42, 157, 143, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.2),
       inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    font-family: 'Bandar', 'Inter', system-ui, sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
   }
 
   .ceramic-button:hover {
@@ -125,36 +346,6 @@
       0 6px 20px rgba(42, 157, 143, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.3),
       inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-  }
-
-  /* Maasai Bead Loader */
-  .bead-loader {
-    @apply w-8 h-8 rounded-full bg-craftart-500 animate-bead-spin;
-    box-shadow: 
-      0 0 0 4px rgba(42, 157, 143, 0.2),
-      0 0 0 8px rgba(42, 157, 143, 0.1);
-  }
-
-  /* Parallax Container */
-  .parallax-container {
-    transform-style: preserve-3d;
-    perspective: 1000px;
-  }
-
-  .parallax-element {
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  /* Scroll Snap */
-  .scroll-snap-container {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-  }
-
-  .scroll-snap-item {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
   }
 
   /* Persian Green Gradients */
@@ -189,27 +380,53 @@
   .gradient-persian-8 {
     background: linear-gradient(270deg, #2A9D8F 0%, rgba(42, 157, 143, 0.1) 100%);
   }
+
+  /* Cultural Pattern Overlays */
+  .kitenge-overlay {
+    position: relative;
+  }
+
+  .kitenge-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/patterns/kitenge.svg');
+    background-repeat: repeat;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .paper-grain {
+    background-image: url('/textures/paper-grain.svg');
+    background-repeat: repeat;
+  }
 }
 
-/* Custom Scrollbar */
+/* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F8F8F5;
+  background: #f1f1f1;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #2A9D8F;
   border-radius: 4px;
+  border: 1px solid #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #0f766e;
 }
 
-/* Dark theme scrollbar for admin panel */
+/* Dark theme scrollbar */
 .dark ::-webkit-scrollbar,
 .bg-gray-900 ::-webkit-scrollbar,
 .scrollbar-thin::-webkit-scrollbar {

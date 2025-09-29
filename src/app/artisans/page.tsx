@@ -227,7 +227,7 @@ export default function ArtisansPage() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="hero-content max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-graphite mb-6">
+            <h1 className="text-4xl md:text-6xl text-extra-thin text-graphite mb-6">
               Meet Our Talented
               <span className="block text-craftart-500">Artisans</span>
             </h1>
@@ -238,21 +238,21 @@ export default function ArtisansPage() {
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 justify-center">
               <div className="text-center">
-                <div className="text-3xl font-bold text-craftart-600 mb-2">{artisans.length}+</div>
-                <div className="text-sm text-graphite/70 font-medium">Master Artisans</div>
+                <div className="text-3xl text-light text-craftart-600 mb-2">{artisans.length}+</div>
+                <div className="text-sm text-graphite/70 text-light">Master Artisans</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-craftart-600 mb-2">6</div>
-                <div className="text-sm text-graphite/70 font-medium">Craft Specialties</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-craftart-600 mb-2">5</div>
-                <div className="text-sm text-graphite/70 font-medium">Regions</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-craftart-600 mb-2">100%</div>
-                <div className="text-sm text-graphite/70 font-medium">Authentic</div>
-              </div>
+                  <div className="text-3xl text-light text-craftart-600 mb-2">6</div>
+                  <div className="text-sm text-graphite/70 text-light">Craft Specialties</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl text-light text-craftart-600 mb-2">5</div>
+                  <div className="text-sm text-graphite/70 text-light">Regions</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl text-light text-craftart-600 mb-2">100%</div>
+                  <div className="text-sm text-graphite/70 text-light">Authentic</div>
+                </div>
             </div>
           </div>
         </div>
@@ -319,7 +319,7 @@ export default function ArtisansPage() {
         <section className="py-16 bg-gradient-to-br from-craftart-50 to-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-graphite mb-4">
+              <h2 className="text-3xl md:text-4xl text-light text-graphite mb-4">
                 Featured Artisans
               </h2>
               <p className="text-lg text-graphite/70 max-w-2xl mx-auto">
@@ -340,7 +340,7 @@ export default function ArtisansPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-graphite mb-4">
+            <h2 className="text-3xl md:text-4xl text-light text-graphite mb-4">
               All Artisans
             </h2>
             <p className="text-lg text-graphite/70 max-w-2xl mx-auto">
@@ -353,7 +353,7 @@ export default function ArtisansPage() {
               <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-craftart-100 flex items-center justify-center">
                 <Users className="w-12 h-12 text-craftart-400" />
               </div>
-              <h3 className="text-xl font-semibold text-graphite mb-2">No artisans found</h3>
+              <h3 className="text-xl text-light text-graphite mb-2">No artisans found</h3>
               <p className="text-graphite/60 mb-6">Try adjusting your search criteria or filters.</p>
               <Button 
                 onClick={() => {
@@ -459,14 +459,14 @@ function ArtisanCard({ artisan, featured }: { artisan: Artisan; featured: boolea
         <div className="mt-8">
           <div className="flex items-start justify-between mb-3">
             <div>
-              <h3 className="text-xl font-bold text-graphite group-hover:text-craftart-600 transition-colors">
+              <h3 className="text-xl text-light text-graphite group-hover:text-craftart-600 transition-colors">
                 {artisan.name}
               </h3>
-              <p className="text-craftart-600 font-medium">{artisan.specialty}</p>
+              <p className="text-craftart-600 text-light">{artisan.specialty}</p>
             </div>
             <div className="flex items-center gap-1 bg-craftart-50 px-2 py-1 rounded-full">
               <Star className="w-4 h-4 text-yellow-500 fill-current" />
-              <span className="text-sm font-medium text-graphite">{artisan.rating}</span>
+              <span className="text-sm text-light text-graphite">{artisan.rating}</span>
               <span className="text-xs text-graphite/60">({artisan.reviewCount})</span>
             </div>
           </div>
@@ -492,13 +492,13 @@ function ArtisanCard({ artisan, featured }: { artisan: Artisan; featured: boolea
               {artisan.techniques.slice(0, 3).map((technique, index) => (
                 <span
                   key={index}
-                  className="px-2 py-1 bg-craftart-100 text-craftart-700 text-xs rounded-full font-medium"
+                  className="px-2 py-1 bg-craftart-100 text-craftart-700 text-xs rounded-full text-light"
                 >
                   {technique}
                 </span>
               ))}
               {artisan.techniques.length > 3 && (
-                <span className="px-2 py-1 bg-graphite/10 text-graphite/60 text-xs rounded-full font-medium">
+                <span className="px-2 py-1 bg-graphite/10 text-graphite/60 text-xs rounded-full text-light">
                   +{artisan.techniques.length - 3} more
                 </span>
               )}
@@ -508,13 +508,13 @@ function ArtisanCard({ artisan, featured }: { artisan: Artisan; featured: boolea
           {/* Stats */}
           <div className="grid grid-cols-2 gap-4 mb-6 p-3 bg-craftart-50/50 rounded-lg">
             <div className="text-center">
-              <div className="text-lg font-bold text-craftart-600">{artisan.totalSales}</div>
+              <div className="text-lg text-light text-craftart-600">{artisan.totalSales}</div>
               <div className="text-xs text-graphite/60">Sales</div>
             </div>
             <div className="text-center">
-              <div className="text-lg font-bold text-craftart-600">{artisan.responseTime}</div>
-              <div className="text-xs text-graphite/60">Response</div>
-            </div>
+                <div className="text-lg text-light text-craftart-600">{artisan.responseTime}</div>
+                <div className="text-xs text-graphite/60">Response</div>
+              </div>
           </div>
           
           {/* Actions */}

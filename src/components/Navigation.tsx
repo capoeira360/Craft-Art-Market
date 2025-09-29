@@ -76,7 +76,7 @@ export function Navigation() {
               />
             </div>
             <span className={cn(
-              'text-xl font-bold transition-colors drop-shadow-sm',
+              'text-xl transition-colors drop-shadow-sm logo',
               isScrolled ? 'text-graphite' : 'text-white'
             )}>
               Craft&Art Marketplace
@@ -92,16 +92,16 @@ export function Navigation() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    'font-medium transition-all duration-200 relative group px-4 py-2',
+                    'transition-all duration-200 relative group px-4 py-2 nav-link',
                     'hover:text-persian-green-600 active:scale-95',
                     'focus:outline-none focus:ring-2 focus:ring-persian-green-500/50',
                     isScrolled 
                       ? isActive
-                        ? 'text-persian-green-700 font-semibold'
+                        ? 'text-persian-green-700'
                         : 'text-graphite hover:text-persian-green-600'
                       : isActive
-                        ? 'text-persian-green-200 font-bold'
-                        : 'text-white hover:text-persian-green-100 drop-shadow-lg font-semibold'
+                        ? 'text-persian-green-200'
+                        : 'text-white hover:text-persian-green-100 drop-shadow-lg'
                   )}
                 >
                   {item.label}
@@ -159,12 +159,12 @@ export function Navigation() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      'block font-medium py-3 px-4 transition-all duration-200 relative group',
+                      'block py-3 px-4 transition-all duration-200 relative group nav-link',
                       'hover:text-persian-green-600',
                       'focus:outline-none focus:ring-2 focus:ring-persian-green-500/50',
                       isActive
-                        ? 'text-persian-green-700 font-bold'
-                        : 'text-graphite font-semibold'
+                        ? 'text-persian-green-700'
+                        : 'text-graphite'
                     )}
                     onClick={() => setIsOpen(false)}
                   >

@@ -114,6 +114,8 @@ module.exports = {
       fontFamily: {
         'display': ['Inter', 'system-ui', 'sans-serif'],
         'body': ['Inter', 'system-ui', 'sans-serif'],
+        'bandar': ['Bandar', 'Inter', 'system-ui', 'sans-serif'],
+        'small-text': ['Bandar', 'Inter', 'system-ui', 'sans-serif'],
       },
     },
   },
