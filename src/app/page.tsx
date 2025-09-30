@@ -1011,7 +1011,7 @@ export default function HomePage() {
         </section>
 
       {/* Artisan Spotlight Carousel */}
-      <section ref={artisanRef} className="relative py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
+      <section ref={artisanRef} className="relative py-8 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
         {/* Parallax Background Layers */}
         <div className="parallax-bg-layer-1 absolute inset-0 opacity-30">
           <div className="absolute top-10 left-10 w-32 h-32 bg-craftart-200 rounded-full blur-3xl"></div>
@@ -1034,14 +1034,16 @@ export default function HomePage() {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
+          {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="artisan-title text-4xl md:text-5xl text-extra-thin text-graphite mb-4">
-              Meet Our <span className="text-craftart-500">Artisans</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+              Meet Our Artisans
             </h2>
-            <p className="artisan-subtitle text-xl text-light text-gray-600 max-w-2xl mx-auto">
-              Discover the stories behind the crafts and the talented hands that create them.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Discover the stories behind the crafts and the talented hands that create them
             </p>
           </div>
+          
           <div className="artisan-carousel-container">
             <ArtisanCarousel />
           </div>
@@ -1049,7 +1051,7 @@ export default function HomePage() {
       </section>
 
       {/* Carousel Overlay Section - Strategic Cover */}
-      <section ref={overlayRef} className="carousel-overlay-section relative min-h-screen">
+      <section ref={overlayRef} className="carousel-overlay-section relative min-h-screen -mt-16">
         {/* Hero Background Image - Primary Layer */}
         <div 
           className="overlay-hero-bg absolute inset-0 z-0"

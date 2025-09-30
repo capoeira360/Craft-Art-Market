@@ -154,7 +154,7 @@ export function ArtisanCarousel() {
   return (
     <div className="relative w-full max-w-6xl mx-auto">
       {/* Main Carousel */}
-      <div className="relative h-96 md:h-[500px] overflow-hidden rounded-2xl shadow-2xl">
+      <div className="relative h-96 md:h-[500px] overflow-hidden rounded-2xl shadow-xl">
         <div 
           ref={carouselRef}
           className="flex h-full transition-transform duration-800 ease-out"
@@ -180,59 +180,68 @@ export function ArtisanCarousel() {
               </video>
               {/* Fallback background image */}
               <div 
-                className="artisan-bg absolute inset-0 w-full h-full bg-cover bg-center"
+                className="artisan-bg absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
                 style={{ backgroundImage: `url(${artisan.image})` }}
               />
               
               {/* Overlay */}
-              <div className="artisan-overlay absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+              <div className="artisan-overlay absolute inset-0 bg-gradient-to-r from-black/75 via-black/60 to-black/30"></div>
               
-              {/* Content */}
-              <div className="artisan-content absolute inset-0 flex items-center">
-                <div className="container mx-auto px-4">
-                  <div className="max-w-2xl text-white">
-                    <div className="artisan-header flex items-center gap-3 mb-4">
-                      <div className="artisan-avatar w-16 h-16 rounded-full bg-persian-green-500 flex items-center justify-center">
-                        <span className="text-2xl font-bold">
-                          {artisan.name.split(' ').map(n => n[0]).join('')}
-                        </span>
-                      </div>
-                      {artisan.verified && (
-                        <div className="bg-persian-green-500 px-3 py-1 rounded-full flex items-center gap-2">
-                          <Award className="w-4 h-4" />
-                          <span className="text-sm font-medium">Verified</span>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <h3 className="text-4xl md:text-5xl font-bold mb-2">{artisan.name}</h3>
-                    
-                    <div className="flex items-center gap-4 mb-4 text-lg">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-5 h-5 text-persian-green-500" />
-                        <span>{artisan.location}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                        <span>{artisan.rating}</span>
-                        <span className="text-gray-300">({artisan.reviewCount} reviews)</span>
-                      </div>
-                    </div>
-                    
-                    <div className="text-xl text-persian-green-300 font-semibold mb-4">
-                      {artisan.specialty} • {artisan.yearsExperience} years experience
-                    </div>
-                    
-                    <p className="text-lg leading-relaxed mb-6 max-w-xl">
-                      {artisan.story}
-                    </p>
-                    
-                    <Button className="ceramic-button text-lg px-8 py-3">
-                      View Portfolio
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              {/* Content - Repositioned for better fit */}
+               <div className="artisan-content absolute inset-0 flex flex-col justify-end pb-8 px-6 md:px-12">
+                 {/* Artisan Header - Compact layout */}
+                 <div className="flex items-center gap-3 mb-4">
+                   <div className="relative">
+                     <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-persian-green-500 flex items-center justify-center border-3 border-white/30">
+                       <span className="text-sm md:text-base font-bold text-white">
+                         {artisan.name.split(' ').map(n => n[0]).join('')}
+                       </span>
+                     </div>
+                     {artisan.verified && (
+                       <div className="absolute -top-1 -right-1 bg-green-500 text-white text-xs px-1.5 py-0.5 rounded-full flex items-center gap-1">
+                         <span className="w-1 h-1 bg-white rounded-full"></span>
+                         <span className="text-xs">✓</span>
+                       </div>
+                     )}
+                   </div>
+                   <div className="flex-1">
+                     <h2 className="text-2xl md:text-3xl font-bold text-white mb-1 leading-tight">
+                       {artisan.name}
+                     </h2>
+                     <div className="flex items-center gap-3 text-sm text-white/90">
+                       <span className="flex items-center gap-1">
+                         <MapPin className="w-3 h-3" />
+                         {artisan.location}
+                       </span>
+                       <div className="flex items-center gap-1">
+                         <Star className="w-3 h-3 text-yellow-400 fill-current" />
+                         <span>{artisan.rating} ({artisan.reviewCount})</span>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+
+                 {/* Specialty - More compact */}
+                 <div className="mb-3">
+                   <span className="text-teal-300 text-sm md:text-base font-semibold bg-black/30 px-3 py-1 rounded-full">
+                     {artisan.specialty} • {artisan.yearsExperience}y exp
+                   </span>
+                 </div>
+
+                 {/* Story - Truncated for better fit */}
+                 <div className="mb-4 max-w-lg">
+                   <p className="text-white/90 text-sm md:text-base leading-relaxed line-clamp-2">
+                     {artisan.story}
+                   </p>
+                 </div>
+
+                 {/* Action Button - Positioned at bottom */}
+                 <div className="flex justify-start">
+                   <button className="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 hover:scale-105 shadow-lg">
+                     View Portfolio
+                   </button>
+                 </div>
+               </div>
             </div>
           ))}
         </div>
