@@ -161,11 +161,11 @@ export function ArtisanCarousel() {
           style={{ width: `${artisans.length * 100}%` }}
         >
           {artisans.map((artisan, index) => (
-            <div key={artisan.id} className="relative w-full h-full flex-shrink-0">
+            <div key={artisan.id} className="artisan-card relative w-full h-full flex-shrink-0">
               {/* Video Background */}
               <video
                 ref={(el) => { videoRefs.current[index] = el; }}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="artisan-video absolute inset-0 w-full h-full object-cover"
                 muted
                 loop
                 playsInline
@@ -180,19 +180,19 @@ export function ArtisanCarousel() {
               </video>
               {/* Fallback background image */}
               <div 
-                className="absolute inset-0 w-full h-full bg-cover bg-center"
+                className="artisan-bg absolute inset-0 w-full h-full bg-cover bg-center"
                 style={{ backgroundImage: `url(${artisan.image})` }}
               />
               
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+              <div className="artisan-overlay absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
               
               {/* Content */}
-              <div className="absolute inset-0 flex items-center">
+              <div className="artisan-content absolute inset-0 flex items-center">
                 <div className="container mx-auto px-4">
                   <div className="max-w-2xl text-white">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-16 h-16 rounded-full bg-persian-green-500 flex items-center justify-center">
+                    <div className="artisan-header flex items-center gap-3 mb-4">
+                      <div className="artisan-avatar w-16 h-16 rounded-full bg-persian-green-500 flex items-center justify-center">
                         <span className="text-2xl font-bold">
                           {artisan.name.split(' ').map(n => n[0]).join('')}
                         </span>
