@@ -783,6 +783,14 @@ export default function HomePage() {
         onUpdate: (self) => {
           const progress = self.progress
           
+          // Wood background subtle parallax
+          gsap.to('.overlay-wood-bg', {
+            y: -20 * progress,
+            scale: 1 + (0.05 * progress),
+            duration: 0,
+            ease: 'none'
+          })
+          
           // Background layers parallax
           gsap.to('.overlay-bg-layer-1', {
             y: -40 * progress,
@@ -1041,56 +1049,44 @@ export default function HomePage() {
       </section>
 
       {/* Carousel Overlay Section - Strategic Cover */}
-      <section ref={overlayRef} className="carousel-overlay-section relative min-h-screen bg-gradient-to-br from-craftart-50 via-white to-copper-patina/10">
-        {/* Artistic Background Elements */}
-        <div className="overlay-bg-layer-1 absolute inset-0 opacity-30">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-craftart-200/40 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-gradient-to-tl from-copper-patina/30 to-transparent rounded-full blur-2xl"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-tr from-zanzibar-twilight/25 to-transparent rounded-full blur-3xl"></div>
-        </div>
+      <section ref={overlayRef} className="carousel-overlay-section relative min-h-screen">
+        {/* Hero Background Image - Primary Layer */}
+        <div 
+          className="overlay-hero-bg absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url(/hero-animate.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            opacity: 1,
+            filter: 'brightness(0.7) contrast(1.1) saturate(1.2)'
+          }}
+        ></div>
 
-        {/* Geometric Pattern Overlay */}
-        <div className="overlay-geometric absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-20 w-8 h-8 bg-craftart-400 rotate-45 opacity-60"></div>
-          <div className="absolute top-40 right-32 w-6 h-6 bg-copper-patina rounded-full opacity-50"></div>
-          <div className="absolute top-60 left-1/2 w-10 h-10 bg-zanzibar-twilight rotate-12 opacity-40"></div>
-          <div className="absolute bottom-40 right-20 w-4 h-4 bg-craftart-500 rounded-full opacity-70"></div>
-          <div className="absolute bottom-60 left-1/4 w-12 h-12 bg-copper-patina/60 rotate-45 opacity-30"></div>
-          <div className="absolute top-1/3 right-1/3 w-5 h-5 bg-zanzibar-twilight rounded-full opacity-50"></div>
-        </div>
-
-        {/* Textured Paper Background */}
-        <div className="overlay-texture absolute inset-0 paper-grain opacity-40"></div>
+        {/* Subtle Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/30 z-10"></div>
 
         {/* Content Container */}
-        <div className="overlay-content relative z-10 flex items-center justify-center min-h-screen">
+        <div className="overlay-content relative z-50 flex items-center justify-center min-h-screen">
           <div className="container mx-auto px-4 text-center">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="overlay-title text-5xl md:text-7xl text-extra-thin text-graphite mb-6 opacity-0">
-                Crafting <span className="text-craftart-500">Tomorrow's</span> Heritage
+            <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+              <h2 className="overlay-title text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">
+                Crafting <span className="text-craftart-300">Tomorrow's</span> Heritage
               </h2>
-              <p className="overlay-subtitle text-xl md:text-2xl text-light text-gray-600 mb-8 max-w-3xl mx-auto opacity-0">
+              <p className="overlay-subtitle text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto drop-shadow-lg">
                 Where traditional artistry meets modern innovation, creating timeless pieces that bridge cultures and generations.
               </p>
-              <div className="overlay-cta opacity-0">
-                <Button className="ceramic-button text-lg px-12 py-4 mr-4">
+              <div className="overlay-cta flex flex-col sm:flex-row gap-4 justify-center">
+                <Button className="bg-craftart-600 hover:bg-craftart-700 text-white text-lg px-12 py-4 rounded-lg font-semibold shadow-2xl border-2 border-white/20">
                   Explore Collection
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-                <Button variant="outline" className="text-lg px-12 py-4 border-craftart-300 text-craftart-600 hover:bg-craftart-50">
+                <Button variant="outline" className="text-lg px-12 py-4 border-2 border-white text-white hover:bg-white hover:text-craftart-600 rounded-lg font-semibold shadow-2xl backdrop-blur-sm">
                   Learn More
                 </Button>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Artistic Border Elements */}
-        <div className="overlay-border-elements absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-craftart-300 via-copper-patina to-zanzibar-twilight opacity-60"></div>
-          <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-zanzibar-twilight via-copper-patina to-craftart-300 opacity-60"></div>
-          <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-craftart-300 via-copper-patina to-zanzibar-twilight opacity-40"></div>
-          <div className="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-zanzibar-twilight via-copper-patina to-craftart-300 opacity-40"></div>
         </div>
       </section>
 
